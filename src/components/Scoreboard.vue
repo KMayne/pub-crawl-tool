@@ -7,7 +7,7 @@
         <th>Name</th>
         <th>Points</th>
       </tr>
-      <tr v-for="user in processedUsers" :key="user.id" :class="user.id == currentUser ? 'current-user-row' : ''">
+      <tr v-for="user in processedUsers" :key="user.id" :class="user.id == currentUserID ? 'current-user-row' : ''">
         <td>{{user.pos}}</td>
         <td><img :src="user.imageURL" class="small-avatar" /><a :href="'/users/' + user.id">{{user.name}}</a></td>
         <td>{{user.points}}</td>
@@ -19,7 +19,7 @@
 <script>
 export default {
   name: 'scoreboard-page',
-  props: ['users', 'currentUser'],
+  props: ['users', 'currentUserID'],
   computed: {
     processedUsers() {
       if (!this.users || !this.users.map) return [];
