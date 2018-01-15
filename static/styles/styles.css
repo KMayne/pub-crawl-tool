@@ -1,0 +1,167 @@
+body {
+  background: #FAFAFA;
+}
+
+html,
+button,
+input,
+optgroup,
+select,
+textarea {
+  font-family: "Calibri", Candara, "Bitstream Vera Sans", "DejaVu Sans", "Bitstream Vera Sans", "Trebuchet MS", Verdana, "Verdana Ref", sans-serif;
+}
+
+article {
+  padding: 8px;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Raleway';
+  margin-top: 5px;
+}
+
+header {
+  font-family: 'Raleway';
+  font-size: 32px;
+  font-weight: bold;
+  text-align: center;
+
+  box-sizing: border-box;
+  padding: 8px;
+
+  background: #EE6352;
+  width: 100%;
+}
+
+a {
+  text-decoration: none;
+  color: black;
+}
+
+button, a.button {
+  padding: 5px 10px;
+  border-radius: 2px;
+  border: none;
+  vertical-align: middle;
+  font-size: 24px;
+  background-color: #DDD;
+}
+
+h1 {
+  text-align: center;
+}
+
+h2 {
+  margin-bottom: 5px;
+}
+
+.nonregistered-message {
+  text-align: center;
+  font-size: 48px;
+}
+
+.small-avatar {
+  width: 33px;
+  height: 33px;
+  border-radius: 50%;
+  vertical-align: middle;
+}
+
+.button-container {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.button-container > button, .button-container > a.button {
+  margin: 5px ;
+}
+
+.split-button {
+  padding: 0;
+  display: flex;
+  justify-content: space-around;
+  align-items: stretch;
+}
+
+.split-button > div {
+  vertical-align: middle;
+}
+
+.split-button > div:first-child + div {
+  margin-left: 5px;
+  padding-left: 5px;
+  border-left: 1px solid #AAA;
+}
+
+.toggle-button-selected {
+  background-color: #AAA !important;
+}
+
+.toggle-button-selected.split-button > div:first-child + div {
+  border-left: 1px solid #999;
+}
+
+.picture-button > img {
+  padding-right: 5px;
+}
+
+.tick {
+  width: 64px;
+  height: 64px;
+  vertical-align: middle;
+}
+
+.submit-button {
+  margin-top: 10px;
+  background: #59CD90;
+}
+
+.submit-button > i {
+  vertical-align: middle;
+  padding-right: 5px;
+}
+
+.submitted-message {
+  vertical-align: middle;
+  font-size: 28px;
+}
+
+.submitted-box {
+  margin-top: 20px;
+}
+
+.submitted-box div {
+  margin-top: 20px;
+}
+
+.error-message {
+  color: red;
+  margin: 5px 0;
+}
+
+table {
+  width: 90%;
+  margin: auto;
+  text-align: center;
+  /*border-collapse: collapse;*/
+  font-size: 20px;
+}
+
+table > tr:nth-child(2n+2) {
+  background-color: #CCC;
+}
+
+.current-user-row {
+  font-weight: bold;
+}
+
+.material-button {
+  padding: 0;
+  margin: 4px;
+  cursor: pointer;
+  background: none;
+}
+
+.material-button > i {
+  text-align: middle;
+}
