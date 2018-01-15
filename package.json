@@ -2,7 +2,7 @@
   "name": "pub-crawl-tool",
   "description": "A web app for tracking points on the 2018 circle line pub crawl.",
   "author": "Kian Mayne <git@kianmayne.co.uk>",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "license": "MIT",
   "scripts": {
     "start-prod": "npm run build && cross-env NODE_ENV=production npm run start",
