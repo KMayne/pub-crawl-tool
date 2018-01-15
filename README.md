@@ -17,7 +17,8 @@ add a user in the admin page. You should then copy the generated link and
 visit it to update the key your browser holds.
 
 ## Future Development
-Before the next pub crawl, I'll probably add a schedule & tracking/reminder function.
+Before the next pub crawl, I'll definitely add image uploading and I'll
+probably add a schedule & tracking/reminder function.
 
 ## Credits
 

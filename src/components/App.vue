@@ -137,7 +137,7 @@ export default {
           }
           return response.json();
         }).then(receivedData => {
-          this.currentUserID = receivedData.user;
+          this.currentUserID = receivedData.userID;
           this.users = receivedData.users;
           this.offences = receivedData.offences;
         }).catch(err => {
