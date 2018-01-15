@@ -174,8 +174,8 @@ nav > a {
   background-color: #FAC05E;
 }
 
-nav > a:first-child {
-  border-right: 1px solid #E4AF56;
+nav > a:nth-child(n+1) {
+  border-left: 1px solid #E4AF56;
 }
 
 nav > a:hover {
