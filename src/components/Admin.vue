@@ -79,7 +79,7 @@ export default {
   data() {
     return {
     newUser: {
-      imageURL: '',
+      imageURL: '/images/user.png',
       name: ''
     },
     newOffence: {
