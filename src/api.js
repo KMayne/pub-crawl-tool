@@ -3,6 +3,11 @@ const utils = require('./utils');
 
 router.use((req, res, next) => {
   const key = req.query.key;
+  if (!key || key === 'null') {
+    const error = new Error("User key missing");
+    error.status = 403;
+    return next(error);
+  }
   // Allow the bootstrap key
   if (key === req.app.get('bootstrapKey')) {
     req.user = { id: 0, name: 'Bootstrap user' };
@@ -21,13 +26,13 @@ router.use((req, res, next) => {
     .catch(err => next(err));
 });
 
-router.get('/data', (req, res) => {
+router.get('/data', (req, res, next) => {
   Promise.all([req.db.UserModel.find(), req.db.OffenceModel.find()])
     .then(([users, offences]) => res.json({ userID: req.user.id, users, offences }))
     .catch(err => next(err));
 });
 
-router.post('/users/', (req, res) => {
+router.post('/users/', (req, res, next) => {
   if (!req.body.name || !req.body.imageURL) {
     const error = new Error("User can not be empty");
     error.status = 400;
@@ -50,7 +55,7 @@ router.post('/users/', (req, res) => {
     .catch(err => next(err));
 });
 
-router.patch('/users/:userID', (req, res) => {
+router.patch('/users/:userID', (req, res, next) => {
   req.db.UserModel.findOne({ id: req.params.userID })
     .then(user => {
       user.imageURL = req.body.imageURL;
@@ -61,7 +66,7 @@ router.patch('/users/:userID', (req, res) => {
     .catch(err => next(err));
 });
 
-router.post('/users/:userID/offences', (req, res) => {
+router.post('/users/:userID/offences', (req, res, next) => {
   if (!req.body.offenceID) {
     const error = new Error("OffenceID can not be empty");
     error.status = 400;
@@ -87,7 +92,7 @@ router.post('/users/:userID/offences', (req, res) => {
     .catch(err => next(err));
 });
 
-router.delete('/users/:userID/offences/:userOffenceID', (req, res) => {
+router.delete('/users/:userID/offences/:userOffenceID', (req, res, next) => {
   req.db.UserModel.findOne({ id: req.params.userID })
     .then(user => {
       const userOffence = user.offences.find(o => o.id == req.params.userOffenceID);
@@ -100,7 +105,7 @@ router.delete('/users/:userID/offences/:userOffenceID', (req, res) => {
     .catch(err => next(err));
 });
 
-router.post('/offences/', (req, res) => {
+router.post('/offences/', (req, res, next) => {
   if (!req.body.description || !req.body.points) {
     const error = new Error("Offence can not be empty");
     error.status = 400;
@@ -118,7 +123,7 @@ router.post('/offences/', (req, res) => {
     .catch(err => next(err));
 });
 
-router.patch('/offences/:offenceID', (req, res) => {
+router.patch('/offences/:offenceID', (req, res, next) => {
   req.db.OffenceModel.findOne({ id: req.params.offenceID })
     .then(offence => {
       offence.description = req.body.description;

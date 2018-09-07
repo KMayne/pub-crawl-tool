@@ -22,7 +22,7 @@
     "express": "^4.16.3",
     "file-loader": "^1.1.11",
     "forever": "^0.15.3",
-    "mongoose": "^4.13.17",
+    "mongoose": "^5.2.0",
     "morgan": "^1.9.0",
     "node-sass": "^4.9.3",
     "normalize.css": "^7.0.0",
