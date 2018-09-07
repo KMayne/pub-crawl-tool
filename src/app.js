@@ -62,7 +62,8 @@ app.use(function (err, req, res, next) {
 
 // Listen for requests
 if (!ENV_TESTING) {
-  app.listen(process.env.PORT || 3000, () => utils.log('Started listening'));
+  const port = process.env.PORT || 3000;
+  app.listen(port, () => utils.log('Started listening on port ' + port));
 }
 
 // Save & output bootstrap key for bootstrapping the data
