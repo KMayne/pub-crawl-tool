@@ -72,4 +72,4 @@ utils.randomString()
     app.set('bootstrapKey', key);
     utils.log('Use the following link to add users: ' + SERVER_URL + '/admin?key=' + key);
   })
-  .catch(err => utils.error(err));
+  .catch(err => utils.error('Error generating random string: ' + err));
