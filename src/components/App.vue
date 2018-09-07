@@ -4,10 +4,12 @@
       Please request a login URL from Kian
     </p>
     <nav v-if="registered">
+      <a href="/route">Route</a>
       <a href="/report">Report incident</a>
       <a href="/scoreboard">Scoreboard</a>
       <a href="/admin">Admin</a>
     </nav>
+    <route-page v-if="registered && page === 'route'" />
     <incident-report-form v-if="registered && (page === 'report' || page === '')"
     :users="users"
     :offences="offences"
@@ -30,6 +32,7 @@
 </template>
 
 <script>
+import RoutePage from './RoutePage.vue';
 import Scoreboard from './Scoreboard.vue';
 import IncidentReportForm from './IncidentReportForm.vue';
 import UserDetail from './UserDetail.vue';
@@ -40,6 +43,7 @@ const API_BASE_URL = '/api';
 export default {
   name: 'app',
   components: {
+    'route-page': RoutePage,
     'scoreboard-page': Scoreboard,
     'admin-page': Admin,
     'incident-report-form': IncidentReportForm,
