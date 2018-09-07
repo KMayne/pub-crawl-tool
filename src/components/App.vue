@@ -9,8 +9,13 @@
       <a href="/scoreboard">Scoreboard</a>
       <a href="/admin">Admin</a>
     </nav>
-    <route-page v-if="registered && page === 'route'" />
-    <incident-report-form v-if="registered && (page === 'report' || page === '')"
+    <article v-if="registered && page === 'welcome'">
+      <h1>Welcome</h1>
+      <p>Welcome to the official Circle Line Pub Crawl app. This app will serve as your guide for the crawl and is where you'll be recording penalty points.</p>
+      <strong><a href="/route">Click here</a> to see the route.</strong>
+     </article>
+    <route-page v-if="registered && (page === 'route' || page === '')" :route="route" />
+    <incident-report-form v-if="registered && page === 'report'"
     :users="users"
     :offences="offences"
     @addUserOffence="addUserOffence"
@@ -158,9 +163,188 @@ export default {
       currentUserID: null,
       users: [],
       offences: [],
-      reportSuccess: false
+      reportSuccess: false,
+      route: [{
+        name: 'Stawpedo a VK',
+        stationName: 'Sloane Square',
+        time: new Time(9),
+        walking: false,
+        geolocation: new Coords()
+      }, {
+        name: 'Weatherspoons Victoria Station',
+        stationName: 'Victoria',
+        notes: 'Breakfast',
+        time: new Time(9, 15),
+        walking: false,
+        geolocation: new Coords()
+      }, {
+        name: 'The Albert',
+        stationName: 'St James\' Park' ,
+        time: new Time(10),
+        walking: true,
+        geolocation: new Coords()
+      },{
+        name: 'St Stephen\'s Tavern',
+        stationName: 'Westminster',
+        time: new Time(10, 30),
+        walking: true,
+        geolocation: new Coords()
+      }, {
+        name: 'Lord Moon of the Mall',
+        stationName: 'Embankment',
+        time: new Time(11),
+        walking: false,
+        geolocation: new Coords()
+      }, {
+        name: 'The George',
+        stationName: 'Temple',
+        time: new Time(11, 30),
+        walking: false,
+        geolocation: new Coords()
+      },{
+        name: 'The Blackfriar',
+        stationName: 'Blackfriars',
+        time: new Time(12),
+        walking: false,
+        geolocation: new Coords()
+      }, {
+        name: 'The Sugarloaf',
+        stationName: 'Mansion House',
+        time: new Time(12, 30),
+        walking: true,
+        geolocation: new Coords()
+      }, {
+        name: 'Sir John Hawkshaw',
+        stationName: 'Cannon Street',
+        notes: 'Lunch',
+        time: new Time(13),
+        walking: true,
+        geolocation: new Coords()
+      },{
+        name: 'The Monument',
+        stationName: 'Monument',
+        time: new Time(14),
+        walking: false,
+        geolocation: new Coords()
+      }, {
+        name: 'The Liberty Bounds',
+        stationName: 'Tower Hill',
+        time: new Time(14, 30),
+        walking: false,
+        geolocation: new Coords()
+      }, {
+        name: 'Hoop and Grapes',
+        stationName: 'Aldgate',
+        time: new Time(15),
+        walking: false,
+        geolocation: new Coords()
+      },{
+        name: 'Hamilton Hall',
+        stationName: 'Liverpool Street',
+        time: new Time(15, 30),
+        walking: true,
+        geolocation: new Coords()
+      }, {
+        name: 'The Globe',
+        stationName: 'Moorgate',
+        time: new Time(16),
+        walking: false,
+        geolocation: new Coords()
+      }, {
+        name: 'Fox & Anchor',
+        stationName: 'Barbican',
+        time: new Time(16, 30),
+        walking: true,
+        geolocation: new Coords()
+      },{
+        name: 'TBD',
+        stationName: 'Farringdon',
+        notes: 'Lots of pubs around here. Will decide when we arrive :shrek-26:',
+        time: new Time(17),
+        walking: false,
+        geolocation: new Coords()
+      }, {
+        name: 'O\'Neils',
+        stationName: 'Kings Cross St Pancras',
+        time: new Time(17, 30),
+        walking: false,
+        geolocation: new Coords()
+      }, {
+        name: 'Crown and Anchor',
+        stationName: 'Euston Square',
+        time: new Time(18),
+        walking: false,
+        geolocation: new Coords()
+      },{
+        name: 'The Albany',
+        stationName: 'Great Portland Street',
+        time: new Time(18, 30),
+        walking: false,
+        geolocation: new Coords()
+      }, {
+        name: 'Metropolitan Bar',
+        stationName: 'Baker Street',
+        notes: 'Dinner',
+        time: new Time(19),
+        walking: false,
+        geolocation: new Coords()
+      }, {
+        name: 'The Green Man',
+        stationName: 'Edgeware Road',
+        time: new Time(20),
+        walking: false,
+        geolocation: new Coords()
+      },{
+        name: 'Pride of Paddington',
+        stationName: 'Paddington',
+        time: new Time(20, 30),
+        walking: false,
+        geolocation: new Coords()
+      }, {
+        name: 'Bayswater Arms',
+        stationName: 'Bayswater',
+        time: new Time(21),
+        walking: false,
+        geolocation: new Coords()
+      }, {
+        name: 'Old Swan',
+        stationName: 'Notting Hill Gate',
+        time: new Time(21, 30),
+        walking: false,
+        geolocation: new Coords()
+      },{
+        name: 'Prince of Wales',
+        stationName: 'High Street Kensington',
+        time: new Time(22),
+        walking: false,
+        geolocation: new Coords()
+      }, {
+        name: 'Stanhope Arms',
+        stationName: 'Gloucester Road',
+        time: new Time(22, 30),
+        walking: false,
+        geolocation: new Coords()
+      }, {
+        name: 'FiveSixEight',
+        stationName: 'South Kensington',
+        time: new Time(23),
+        walking: false,
+        geolocation: new Coords()
+      },]
     };
   }
+}
+
+class Time {
+  constructor(hour, minute = 0) {
+    if (!(hour >= 0 && hour < 24 && minute >= 0 && minute < 60)) throw new Error("Invalid time");
+    this.hour = hour;
+    this.minute = minute;
+  }
+}
+
+class Coords {
+  constructor() {}
 }
 </script>
 
@@ -168,9 +352,17 @@ export default {
 nav {
   display: flex;
   justify-items: stretch;
+  overflow-x: scroll;
+}
+
+header > a, nav > a {
+  color: black;
 }
 
 nav > a {
+  display: flex;
+  justify-content: center;
+  align-items: center;  
   flex: 1 1;
   text-align: center;
   font-size: 24px;
@@ -184,5 +376,9 @@ nav > a:nth-child(n+1) {
 
 nav > a:hover {
   background-color: #E4AF56;
+}
+
+a {
+  color: blue;
 }
 </style>
