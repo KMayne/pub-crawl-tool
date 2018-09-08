@@ -8,7 +8,7 @@
             <option v-for="pub in route" :value="pub.name">{{pub.name}}</option>
           </select>
         </label>
-        <button id="#checkin-button" @click.prevent="checkIn(selectedPub)" class="submit-button">
+        <button v-if="currentUser.checkIns.length === 0" id="#checkin-button" @click.prevent="checkIn(selectedPub)" class="submit-button">
           <span>Lets go!</span>
         </button>
       </form>
@@ -18,7 +18,7 @@
 <script>
 export default {
   name: 'welcome-page',
-  props: ['route'],
+  props: ['route', 'currentUser'],
   data() { return { selectedPub: this.route[0].name }; },
   methods: {
     checkIn: function (pubName) {
