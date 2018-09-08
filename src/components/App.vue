@@ -4,11 +4,14 @@
       Please request a login URL from Kian
     </p>
     <nav v-if="registered">
-      <a href="/report">Report incident</a>
-      <a href="/scoreboard">Scoreboard</a>
+      <a href="/route">Route</a>
+      <a href="/report">Report</a>
+      <a href="/scoreboard">Scores</a>
       <a href="/admin">Admin</a>
     </nav>
-    <incident-report-form v-if="registered && (page === 'report' || page === '')"
+    <welcome-page v-if="registered && page === 'welcome'" :route="route" @checkIn="checkIn"/>
+    <route-page v-if="registered && (page === 'route' || page === '')" :route="route" :users="users" :currentUser="currentUser" @checkIn="checkIn" />
+    <incident-report-form v-if="registered && page === 'report'"
     :users="users"
     :offences="offences"
     @addUserOffence="addUserOffence"
@@ -30,19 +33,23 @@
 </template>
 
 <script>
+import RoutePage from './RoutePage.vue';
 import Scoreboard from './Scoreboard.vue';
 import IncidentReportForm from './IncidentReportForm.vue';
 import UserDetail from './UserDetail.vue';
 import Admin from './Admin.vue';
+import WelcomePage from './WelcomePage.vue';
 
 const API_BASE_URL = '/api';
 
 export default {
   name: 'app',
   components: {
+    'route-page': RoutePage,
     'scoreboard-page': Scoreboard,
     'admin-page': Admin,
     'incident-report-form': IncidentReportForm,
+    'welcome-page': WelcomePage,
     'user-detail': UserDetail
   },
 
@@ -52,7 +59,12 @@ export default {
       this.setKey(query.substring(4));
     }
     // Retrieve data from server
-    this.refreshData();
+    this.refreshData()
+      .then(() => {
+        if (!this.currentUser) throw new Error("User not found");
+        console.log('Current User =', this.currentUser);
+        if(this.currentUser.checkIns.length === 0 && this.page !== 'welcome') window.location.href = "/welcome";
+      });
   },
 
   computed: {
@@ -67,6 +79,10 @@ export default {
         points: 0
       };
       return this.users.find(u => u.id == this.userID) || NOT_FOUND_USER;
+    },
+
+    currentUser() {
+      return this.users ? this.users.find(u => u.id === this.currentUserID) : null;
     }
   },
 
@@ -81,6 +97,12 @@ export default {
 
     addURLKey(url) {
       return url + '?key=' + this.getKey();
+    },
+
+    checkIn({ pubName, redirect }) {
+      this.sendData(`/users/${this.currentUserID}/checkIn`, { pubName })
+        .then(() => this.refreshData())
+        .then(() => { if (redirect) window.location.href = '/'; });
     },
 
     addUserOffence({ userID, offenceID }) {
@@ -154,9 +176,197 @@ export default {
       currentUserID: null,
       users: [],
       offences: [],
-      reportSuccess: false
+      reportSuccess: false,
+      route: [{
+        name: 'Strawpedo a VK outside the station',
+        stationName: 'Sloane Square',
+        time: new Time(9),
+        walking: false,
+        geolocation: new Coords()
+      }, {
+        name: 'Weatherspoons Victoria Station',
+        stationName: 'Victoria',
+        notes: 'Breakfast',
+        time: new Time(9, 15),
+        walking: false,
+        geolocation: new Coords()
+      }, {
+        name: 'The Albert',
+        stationName: 'St James\' Park' ,
+        time: new Time(10),
+        walking: true,
+        geolocation: new Coords()
+      },{
+        name: 'St Stephen\'s Tavern',
+        stationName: 'Westminster',
+        time: new Time(10, 30),
+        walking: true,
+        geolocation: new Coords()
+      }, {
+        name: 'Lord Moon of the Mall',
+        stationName: 'Embankment',
+        time: new Time(11),
+        walking: false,
+        geolocation: new Coords()
+      }, {
+        name: 'The George',
+        stationName: 'Temple',
+        time: new Time(11, 30),
+        walking: false,
+        geolocation: new Coords()
+      },{
+        name: 'The Blackfriar',
+        stationName: 'Blackfriars',
+        time: new Time(12),
+        walking: false,
+        geolocation: new Coords()
+      }, {
+        name: 'The Sugarloaf',
+        stationName: 'Mansion House',
+        time: new Time(12, 30),
+        walking: true,
+        geolocation: new Coords()
+      }, {
+        name: 'Sir John Hawkshaw',
+        stationName: 'Cannon Street',
+        notes: 'Lunch',
+        time: new Time(13),
+        walking: true,
+        geolocation: new Coords()
+      },{
+        name: 'The Monument',
+        stationName: 'Monument',
+        time: new Time(14),
+        walking: false,
+        geolocation: new Coords()
+      }, {
+        name: 'The Liberty Bounds',
+        stationName: 'Tower Hill',
+        time: new Time(14, 30),
+        walking: false,
+        geolocation: new Coords()
+      }, {
+        name: 'Hoop and Grapes',
+        stationName: 'Aldgate',
+        time: new Time(15),
+        walking: false,
+        geolocation: new Coords()
+      },{
+        name: 'Hamilton Hall',
+        stationName: 'Liverpool Street',
+        time: new Time(15, 30),
+        walking: true,
+        geolocation: new Coords()
+      }, {
+        name: 'The Globe',
+        stationName: 'Moorgate',
+        time: new Time(16),
+        walking: false,
+        geolocation: new Coords()
+      }, {
+        name: 'Fox & Anchor',
+        stationName: 'Barbican',
+        time: new Time(16, 30),
+        walking: true,
+        geolocation: new Coords()
+      },{
+        name: 'TBD',
+        stationName: 'Farringdon',
+        notes: 'Pub undecided',
+        time: new Time(17),
+        walking: false,
+        geolocation: new Coords()
+      }, {
+        name: 'O\'Neils',
+        stationName: 'Kings Cross St Pancras',
+        time: new Time(17, 30),
+        walking: false,
+        geolocation: new Coords()
+      }, {
+        name: 'Crown and Anchor',
+        stationName: 'Euston Square',
+        time: new Time(18),
+        walking: false,
+        geolocation: new Coords()
+      },{
+        name: 'The Albany',
+        stationName: 'Great Portland Street',
+        time: new Time(18, 30),
+        walking: false,
+        geolocation: new Coords()
+      }, {
+        name: 'Metropolitan Bar',
+        stationName: 'Baker Street',
+        notes: 'Dinner',
+        time: new Time(19),
+        walking: false,
+        geolocation: new Coords()
+      }, {
+        name: 'The Green Man',
+        stationName: 'Edgeware Road',
+        time: new Time(20),
+        walking: false,
+        geolocation: new Coords()
+      },{
+        name: 'Pride of Paddington',
+        stationName: 'Paddington',
+        time: new Time(20, 30),
+        walking: false,
+        geolocation: new Coords()
+      }, {
+        name: 'Bayswater Arms',
+        stationName: 'Bayswater',
+        time: new Time(21),
+        walking: false,
+        geolocation: new Coords()
+      }, {
+        name: 'Old Swan',
+        stationName: 'Notting Hill Gate',
+        time: new Time(21, 30),
+        walking: false,
+        geolocation: new Coords()
+      },{
+        name: 'Prince of Wales',
+        stationName: 'High Street Kensington',
+        time: new Time(22),
+        walking: false,
+        geolocation: new Coords()
+      }, {
+        name: 'Stanhope Arms',
+        stationName: 'Gloucester Road',
+        time: new Time(22, 30),
+        walking: false,
+        geolocation: new Coords()
+      }, {
+        name: 'FiveSixEight',
+        stationName: 'South Kensington',
+        time: new Time(23),
+        walking: false,
+        geolocation: new Coords()
+      },]
     };
   }
+}
+
+class Time {
+  constructor(hour, minute = 0) {
+    if (!(hour >= 0 && hour < 24 && minute >= 0 && minute < 60)) throw new Error("Invalid time");
+    this.hour = hour;
+    this.minute = minute;
+  }
+
+  format() {
+    return pad(this.hour) + ':' + pad(this.minute);
+  }
+}
+
+class Coords {
+  constructor() {}
+}
+
+function pad(num) {
+  if (num < 10) return '0' + num;
+  return String(num);
 }
 </script>
 
@@ -166,7 +376,14 @@ nav {
   justify-items: stretch;
 }
 
+header > a, nav > a {
+  color: black;
+}
+
 nav > a {
+  display: flex;
+  justify-content: center;
+  align-items: center;  
   flex: 1 1;
   text-align: center;
   font-size: 24px;

@@ -22,7 +22,6 @@ app.use(favicon(path.join(__dirname, '..', 'static', 'images', 'favicon', 'favic
 // Set up static paths - ideally a reverse proxy would handle this & favicon
 app.use('/styles', express.static(path.join(__dirname, '..', 'static', 'styles')));
 app.use('/images/', express.static(path.join(__dirname, '..', 'static', 'images')));
-app.use('/build', express.static(path.join(__dirname, '..', 'build')));
 app.use(express.static(path.join(__dirname, '..', 'uploads')));
 
 // Webpack middleware for use in development
@@ -35,6 +34,8 @@ if (ENV_DEVELOPMENT || ENV_TESTING) {
   app.use(webpackDevMiddleware(compiler, {
     publicPath: config.output.publicPath
   }));
+} else {
+  app.use('/build', express.static(path.join(__dirname, '..', 'build')));
 }
 
 // Make models available to middleware

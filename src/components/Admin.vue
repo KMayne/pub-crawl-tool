@@ -105,7 +105,7 @@ export default {
     },
 
     generateLink(key) {
-      return location.origin + '/?key=' + key;
+      return location.origin + '/welcome?key=' + key;
     }
   }
 }
