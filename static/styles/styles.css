@@ -165,3 +165,16 @@ table > tr:nth-child(2n+2) {
 .material-button > i {
   text-align: middle;
 }
+
+article {
+  overflow-x: auto;
+  box-sizing: border-box;
+}
+
+.scroll-container {
+  overflow-x: auto;
+}
+
+html, body, main, article, table {
+  width: 100%;
+}

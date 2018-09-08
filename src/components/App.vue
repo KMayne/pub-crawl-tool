@@ -5,16 +5,12 @@
     </p>
     <nav v-if="registered">
       <a href="/route">Route</a>
-      <a href="/report">Report incident</a>
-      <a href="/scoreboard">Scoreboard</a>
+      <a href="/report">Report</a>
+      <a href="/scoreboard">Scores</a>
       <a href="/admin">Admin</a>
     </nav>
-    <article v-if="registered && page === 'welcome'">
-      <h1>Welcome</h1>
-      <p>Welcome to the official Circle Line Pub Crawl app. This app will serve as your guide for the crawl and is where you'll be recording penalty points.</p>
-      <strong><a href="/route">Click here</a> to see the route.</strong>
-     </article>
-    <route-page v-if="registered && (page === 'route' || page === '')" :route="route" />
+    <welcome-page v-if="registered && page === 'welcome'" :route="route" @checkIn="checkIn"/>
+    <route-page v-if="registered && (page === 'route' || page === '')" :route="route" :users="users" :currentUser="currentUser" @checkIn="checkIn" />
     <incident-report-form v-if="registered && page === 'report'"
     :users="users"
     :offences="offences"
@@ -42,6 +38,7 @@ import Scoreboard from './Scoreboard.vue';
 import IncidentReportForm from './IncidentReportForm.vue';
 import UserDetail from './UserDetail.vue';
 import Admin from './Admin.vue';
+import WelcomePage from './WelcomePage.vue';
 
 const API_BASE_URL = '/api';
 
@@ -52,6 +49,7 @@ export default {
     'scoreboard-page': Scoreboard,
     'admin-page': Admin,
     'incident-report-form': IncidentReportForm,
+    'welcome-page': WelcomePage,
     'user-detail': UserDetail
   },
 
@@ -61,7 +59,12 @@ export default {
       this.setKey(query.substring(4));
     }
     // Retrieve data from server
-    this.refreshData();
+    this.refreshData()
+      .then(() => {
+        if (!this.currentUser) throw new Error("User not found");
+        console.log('Current User =', this.currentUser);
+        if(this.currentUser.checkIns.length === 0 && this.page !== 'welcome') window.location.href = "/welcome";
+      });
   },
 
   computed: {
@@ -76,6 +79,10 @@ export default {
         points: 0
       };
       return this.users.find(u => u.id == this.userID) || NOT_FOUND_USER;
+    },
+
+    currentUser() {
+      return this.users ? this.users.find(u => u.id === this.currentUserID) : null;
     }
   },
 
@@ -90,6 +97,12 @@ export default {
 
     addURLKey(url) {
       return url + '?key=' + this.getKey();
+    },
+
+    checkIn({ pubName, redirect }) {
+      this.sendData(`/users/${this.currentUserID}/checkIn`, { pubName })
+        .then(() => this.refreshData())
+        .then(() => { if (redirect) window.location.href = '/'; });
     },
 
     addUserOffence({ userID, offenceID }) {
@@ -165,7 +178,7 @@ export default {
       offences: [],
       reportSuccess: false,
       route: [{
-        name: 'Stawpedo a VK',
+        name: 'Strawpedo a VK outside the station',
         stationName: 'Sloane Square',
         time: new Time(9),
         walking: false,
@@ -259,7 +272,7 @@ export default {
       },{
         name: 'TBD',
         stationName: 'Farringdon',
-        notes: 'Lots of pubs around here. Will decide when we arrive :shrek-26:',
+        notes: 'Pub undecided',
         time: new Time(17),
         walking: false,
         geolocation: new Coords()
@@ -341,10 +354,19 @@ class Time {
     this.hour = hour;
     this.minute = minute;
   }
+
+  format() {
+    return pad(this.hour) + ':' + pad(this.minute);
+  }
 }
 
 class Coords {
   constructor() {}
+}
+
+function pad(num) {
+  if (num < 10) return '0' + num;
+  return String(num);
 }
 </script>
 
@@ -352,7 +374,6 @@ class Coords {
 nav {
   display: flex;
   justify-items: stretch;
-  overflow-x: scroll;
 }
 
 header > a, nav > a {
@@ -376,9 +397,5 @@ nav > a:nth-child(n+1) {
 
 nav > a:hover {
   background-color: #E4AF56;
-}
-
-a {
-  color: blue;
 }
 </style>

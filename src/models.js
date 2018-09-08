@@ -19,12 +19,18 @@ const UserOffenceSchema = new Schema({
   submitter: String
 });
 
+const CheckInSchema = new Schema({
+  pubName: String,
+  timestamp: { type: Date, default: Date.now }
+});
+
 const UserSchema = new Schema({
   id: Number,
   name: String,
   imageURL: String,
   points: Number,
   offences: [UserOffenceSchema],
+  checkIns: [CheckInSchema],
   key: String
 });
 

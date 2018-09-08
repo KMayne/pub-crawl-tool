@@ -61,6 +61,16 @@ router.patch('/users/:userID', (req, res) => {
     .catch(err => next(err));
 });
 
+router.post('/users/:userID/checkIn', (req, res, next) => {
+  req.db.UserModel.findOne({ id: req.params.userID })
+    .then(user => {
+      user.checkIns.push({ pubName: req.body.pubName });
+      return user.save()
+    })
+    .then(data => res.json(data))
+    .catch(err => next(err));
+});
+
 router.post('/users/:userID/offences', (req, res) => {
   if (!req.body.offenceID) {
     const error = new Error("OffenceID can not be empty");
