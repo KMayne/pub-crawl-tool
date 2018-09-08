@@ -3,6 +3,7 @@
   <!-- Next pub -->
   <section class="next-pub">
     <h1>Next pub: {{nextPub.name}} ({{nextPub.stationName}})</h1>
+    <h2>Scheduled Arrival: <span :class="{ 'behind-schedule': nextPub.time.passed() }">{{nextPub.time.format()}}</span></h2>
     <h3>Mode of transport: {{nextPub.walking ? 'Walking' : 'Tube'}}</h3>
     <button id="#checkin-btn" @click="checkIn(nextPub.name)" class="submit-button">
       <span>Check In</span>
@@ -86,5 +87,9 @@ export default {
 
 .next-pub > h3 {
   margin: 0.5em;
+}
+
+.behind-schedule {
+  color: red;
 }
 </style>

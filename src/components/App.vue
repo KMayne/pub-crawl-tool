@@ -363,6 +363,11 @@ class Time {
   format() {
     return pad(this.hour) + ':' + pad(this.minute);
   }
+
+  passed() {
+    const now = new Date();
+    return now.getHours() > this.hour || now.getHours() === this.hour && now.getMinutes() > this.minute;
+  }
 }
 
 class Coords {
