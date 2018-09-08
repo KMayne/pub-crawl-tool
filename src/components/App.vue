@@ -9,7 +9,7 @@
       <a href="/scoreboard">Scores</a>
       <a href="/admin">Admin</a>
     </nav>
-    <welcome-page v-if="registered && page === 'welcome'" :route="route" @checkIn="checkIn"/>
+    <welcome-page v-if="registered && page === 'welcome'" :route="route" @checkIn="checkIn" :currentUser="currentUser"/>
     <route-page v-if="registered && (page === 'route' || page === '')" :route="route" :users="users" :currentUser="currentUser" @checkIn="checkIn" @removeCheckIn="removeCheckIn" />
     <incident-report-form v-if="registered && page === 'report'"
     :users="users"
