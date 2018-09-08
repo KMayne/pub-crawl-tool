@@ -26,7 +26,7 @@
       <td>{{pub.name}}</td>
       <td>{{pub.time.format()}}</td>
       <td>{{pub.notes}}{{pub.walking ? (pub.notes ? ' ' : '') + 'Walking' : ''}}</td>
-      <td>{{formatTime((checkIns.find(ci => ci.pubName === pub.name)||{}).timestamp)}}</td>
+      <td><a @click="removeCheckIn(pub.name)">{{formatTime((checkIns.find(ci => ci.pubName === pub.name)||{}).timestamp)}}</a></td>
       <td><a v-for="user in pubVisitors[pub.name]" :href="'/users/' + user.id"><img :src="user.imageURL" class="small-avatar" /></a></td>
     </tr>
   </table>
@@ -59,6 +59,11 @@ export default {
   methods: {
     checkIn(pubName) {
       this.$emit('checkIn', { pubName });
+    },
+    removeCheckIn(pubName) {
+      if (window.confirm('Are you sure you want to remove this check in?')) {
+        this.$emit('removeCheckIn', { pubName }); 
+      }
     },
     formatTime(dateStr) {
       return dateStr ? new Date(dateStr).toTimeString().substring(0, 5) : '';

@@ -10,7 +10,7 @@
       <a href="/admin">Admin</a>
     </nav>
     <welcome-page v-if="registered && page === 'welcome'" :route="route" @checkIn="checkIn"/>
-    <route-page v-if="registered && (page === 'route' || page === '')" :route="route" :users="users" :currentUser="currentUser" @checkIn="checkIn" />
+    <route-page v-if="registered && (page === 'route' || page === '')" :route="route" :users="users" :currentUser="currentUser" @checkIn="checkIn" @removeCheckIn="removeCheckIn" />
     <incident-report-form v-if="registered && page === 'report'"
     :users="users"
     :offences="offences"
@@ -103,6 +103,11 @@ export default {
       this.sendData(`/users/${this.currentUserID}/checkIn`, { pubName })
         .then(() => this.refreshData())
         .then(() => { if (redirect) window.location.href = '/'; });
+    },
+
+    removeCheckIn({ pubName }) {
+      this.sendData(`/users/${this.currentUserID}/checkIn/${pubName}`, null, 'DELETE')
+        .then(() => this.refreshData());
     },
 
     addUserOffence({ userID, offenceID }) {
