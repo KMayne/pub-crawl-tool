@@ -1,7 +1,7 @@
 <template>
 <article>
   <!-- Next pub -->
-  <section class="next-pub">
+  <section v-if="nextPub" class="next-pub">
     <h1>Next pub: {{nextPub.name}} ({{nextPub.stationName}})</h1>
     <h2>Scheduled Arrival: <span :class="{ 'behind-schedule': nextPub.time.passed() }">{{nextPub.time.format()}}</span></h2>
     <h3>Mode of transport: {{nextPub.walking ? 'Walking' : 'Tube'}}</h3>
@@ -10,8 +10,10 @@
       <i class="material-icons">done</i>
     </button>
   </section>
+  <section v-else>
+    <h1>Congratulations - you have completed the pub crawl! 🍻</h1>
+  </section>
   <hr>
-  <!-- <p>Status: On Schedule</p> -->
   <div class="scroll-container">
   <table>
     <tr>
