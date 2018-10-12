@@ -11,10 +11,9 @@
     </button>
   </section>
   <section v-else>
-    <h1>Congratulations! You have completed all the pubs 🍻</h1>
+    <h1>Congratulations - you have completed the pub crawl! 🍻</h1>
   </section>
   <hr>
-  <!-- <p>Status: On Schedule</p> -->
   <div class="scroll-container">
   <table>
     <tr>
