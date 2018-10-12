@@ -1,7 +1,7 @@
 <template>
 <article>
   <!-- Next pub -->
-  <section class="next-pub">
+  <section v-if="nextPub" class="next-pub">
     <h1>Next pub: {{nextPub.name}} ({{nextPub.stationName}})</h1>
     <h2>Scheduled Arrival: <span :class="{ 'behind-schedule': nextPub.time.passed() }">{{nextPub.time.format()}}</span></h2>
     <h3>Mode of transport: {{nextPub.walking ? 'Walking' : 'Tube'}}</h3>
@@ -9,6 +9,9 @@
       <span>Check In</span>
       <i class="material-icons">done</i>
     </button>
+  </section>
+  <section v-else>
+    <h1>Congratulations! You have completed all the pubs 🍻</h1>
   </section>
   <hr>
   <!-- <p>Status: On Schedule</p> -->
@@ -63,7 +66,7 @@ export default {
     },
     removeCheckIn(pubName) {
       if (window.confirm('Are you sure you want to remove this check in?')) {
-        this.$emit('removeCheckIn', { pubName }); 
+        this.$emit('removeCheckIn', { pubName });
       }
     },
     formatTime(dateStr) {
