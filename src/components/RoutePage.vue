@@ -44,7 +44,12 @@ export default {
       return this.currentUser ? this.currentUser.checkIns : [];
     },
     nextPub: function () {
-      return this.route.find(pub => !this.checkIns.some(ci => ci.pubName === pub.name));
+      // Find start pub
+      const startPub = this.route.findIndex(pub =>
+        this.checkIns.some(ci => ci.pubName === pub.name));
+      // Pick first pub not checked into after
+      return this.route.slice(Math.max(0, startPub))
+        .find(pub => !this.checkIns.some(ci => ci.pubName === pub.name));
     },
     pubVisitors: function () {
       if (!this.route || !this.users) return {};
@@ -63,7 +68,7 @@ export default {
     },
     removeCheckIn(pubName) {
       if (window.confirm('Are you sure you want to remove this check in?')) {
-        this.$emit('removeCheckIn', { pubName }); 
+        this.$emit('removeCheckIn', { pubName });
       }
     },
     formatTime(dateStr) {
