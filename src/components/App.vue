@@ -183,169 +183,99 @@ export default {
       offences: [],
       reportSuccess: false,
       route: [{
-        name: 'Strawpedo a VK outside the station',
-        stationName: 'Sloane Square',
+        name: 'Strawpedo a VK',
+        stationName: 'York Street Airbnb',
         time: new Time(9),
         walking: false,
         geolocation: new Coords()
       }, {
-        name: 'Weatherspoons Victoria Station',
-        stationName: 'Victoria',
-        notes: 'Breakfast',
-        time: new Time(9, 15),
+        name: 'The Counting House (Wetherspoons)',
+        stationName: 'Buchanan Street',
+        time: new Time(9, 30),
         walking: false,
         geolocation: new Coords()
       }, {
-        name: 'The Albert',
-        stationName: 'St James\' Park' ,
-        time: new Time(10),
-        walking: true,
-        geolocation: new Coords()
-      },{
-        name: 'St Stephen\'s Tavern',
-        stationName: 'Westminster',
-        time: new Time(10, 30),
-        walking: true,
-        geolocation: new Coords()
-      }, {
-        name: 'Lord Moon of the Mall',
-        stationName: 'Embankment',
+        name: 'Jacksons',
+        stationName: 'Cowcaddens',
         time: new Time(11),
         walking: false,
         geolocation: new Coords()
       }, {
-        name: 'The George',
-        stationName: 'Temple',
-        time: new Time(11, 30),
-        walking: false,
-        geolocation: new Coords()
-      },{
-        name: 'The Blackfriar',
-        stationName: 'Blackfriars',
+        name: 'Munros',
+        stationName: 'St Georges Cross',
         time: new Time(12),
         walking: false,
         geolocation: new Coords()
       }, {
-        name: 'The Sugarloaf',
-        stationName: 'Mansion House',
-        time: new Time(12, 30),
-        walking: true,
-        geolocation: new Coords()
-      }, {
-        name: 'Sir John Hawkshaw',
-        stationName: 'Cannon Street',
-        notes: 'Lunch',
-        time: new Time(13),
-        walking: true,
-        geolocation: new Coords()
-      },{
-        name: 'The Monument',
-        stationName: 'Monument',
-        time: new Time(14),
+        name: 'Inn Deep',
+        stationName: 'Kelvinbridge',
+        time: new Time(12, 45),
         walking: false,
         geolocation: new Coords()
       }, {
-        name: 'The Liberty Bounds',
-        stationName: 'Tower Hill',
-        time: new Time(14, 30),
+        name: 'Brel',
+        stationName: 'Hillhead',
+        time: new Time(13, 45),
         walking: false,
         geolocation: new Coords()
       }, {
-        name: 'Hoop and Grapes',
-        stationName: 'Aldgate',
-        time: new Time(15),
-        walking: false,
-        geolocation: new Coords()
-      },{
-        name: 'Hamilton Hall',
-        stationName: 'Liverpool Street',
-        time: new Time(15, 30),
-        walking: true,
-        geolocation: new Coords()
-      }, {
-        name: 'The Globe',
-        stationName: 'Moorgate',
-        time: new Time(16),
+        name: 'Three Judges',
+        stationName: 'Kelvinhall',
+        time: new Time(15, 15),
         walking: false,
         geolocation: new Coords()
       }, {
-        name: 'Fox & Anchor',
-        stationName: 'Barbican',
-        time: new Time(16, 30),
-        walking: true,
-        geolocation: new Coords()
-      },{
-        name: 'TBD',
-        stationName: 'Farringdon',
-        notes: 'Pub undecided',
-        time: new Time(17),
+        name: 'Deoch an Dorus',
+        stationName: 'Partick',
+        time: new Time(15, 55),
         walking: false,
         geolocation: new Coords()
       }, {
-        name: 'O\'Neils',
-        stationName: 'Kings Cross St Pancras',
-        time: new Time(17, 30),
+        name: 'Brechins Bar',
+        stationName: 'Govan',
+        time: new Time(16, 50),
         walking: false,
         geolocation: new Coords()
       }, {
-        name: 'Crown and Anchor',
-        stationName: 'Euston Square',
-        time: new Time(18),
-        walking: false,
-        geolocation: new Coords()
-      },{
-        name: 'The Albany',
-        stationName: 'Great Portland Street',
-        time: new Time(18, 30),
+        name: 'The Louden Tavern',
+        stationName: 'Ibrox',
+        time: new Time(17, 50),
         walking: false,
         geolocation: new Coords()
       }, {
-        name: 'Metropolitan Bar',
-        stationName: 'Baker Street',
-        notes: 'Dinner',
-        time: new Time(19),
+        name: 'Kensington Bar',
+        stationName: 'Cessnock',
+        time: new Time(18, 45),
         walking: false,
         geolocation: new Coords()
       }, {
-        name: 'The Green Man',
-        stationName: 'Edgeware Road',
-        time: new Time(20),
-        walking: false,
-        geolocation: new Coords()
-      },{
-        name: 'Pride of Paddington',
-        stationName: 'Paddington',
-        time: new Time(20, 30),
+        name: 'The District Bar',
+        stationName: 'Kinning Park',
+        time: new Time(19, 40),
         walking: false,
         geolocation: new Coords()
       }, {
-        name: 'Bayswater Arms',
-        stationName: 'Bayswater',
-        time: new Time(21),
+        name: 'The Union Bar',
+        stationName: 'Shields Road',
+        time: new Time(20, 15),
         walking: false,
         geolocation: new Coords()
       }, {
-        name: 'Old Swan',
-        stationName: 'Notting Hill Gate',
-        time: new Time(21, 30),
-        walking: false,
-        geolocation: new Coords()
-      },{
-        name: 'Prince of Wales',
-        stationName: 'High Street Kensington',
-        time: new Time(22),
+        name: 'Lord Nelson Bar',
+        stationName: 'West Street',
+        time: new Time(21, 10),
         walking: false,
         geolocation: new Coords()
       }, {
-        name: 'Stanhope Arms',
-        stationName: 'Gloucester Road',
+        name: 'The Laurieston',
+        stationName: 'Bridge Street',
+        time: new Time(21, 40),
+        walking: false,
+        geolocation: new Coords()
+      }, {
+        name: 'The Sir John Moore (Wetherspoons)',
+        stationName: 'St Enoch',
         time: new Time(22, 30),
-        walking: false,
-        geolocation: new Coords()
-      }, {
-        name: 'FiveSixEight',
-        stationName: 'South Kensington',
-        time: new Time(23),
         walking: false,
         geolocation: new Coords()
       },]
