@@ -202,8 +202,8 @@ export default {
         walking: false,
         geolocation: new Coords()
       }, {
-        name: 'Munros',
-        stationName: 'St Georges Cross',
+        name: 'Munro\'s',
+        stationName: 'St. George\'s Cross',
         time: new Time(12),
         walking: false,
         geolocation: new Coords()
@@ -233,7 +233,7 @@ export default {
         walking: false,
         geolocation: new Coords()
       }, {
-        name: 'Brechins Bar',
+        name: 'Brechin\'s Bar',
         stationName: 'Govan',
         time: new Time(16, 50),
         walking: false,
