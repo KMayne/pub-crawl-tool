@@ -192,6 +192,7 @@ export default {
         name: 'The Counting House (Wetherspoons)',
         stationName: 'Buchanan Street',
         time: new Time(9, 30),
+        notes: 'Breakfast',
         walking: false,
         geolocation: new Coords()
       }, {
@@ -216,6 +217,7 @@ export default {
         name: 'Brel',
         stationName: 'Hillhead',
         time: new Time(13, 45),
+        notes: 'Lunch',
         walking: false,
         geolocation: new Coords()
       }, {
@@ -240,6 +242,7 @@ export default {
         name: 'The Louden Tavern',
         stationName: 'Ibrox',
         time: new Time(17, 50),
+        notes: 'Dinner maybe?',
         walking: false,
         geolocation: new Coords()
       }, {
