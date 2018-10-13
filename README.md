@@ -1,7 +1,7 @@
 # pub-crawl-tool
-##### A web app for tracking progress & points on the 2018 circle line pub crawl.
+##### A web app for tracking progress & points on the 2018 Glasgow Sub Crawl.
 
-This web app allows for tracking you and your fellow crawlers through the circle line pub crawl.
+This web app allows for tracking you and your fellow crawlers through the Glasgow Sub Crawl.
 For a bit of fun, we also had point penalties for things (e.g. losing something) on
 our pub crawl. This tool was created by me in about 14 hours to track those points (and an additional 6 hours for adding the tracking feature & deploying v2).
 
@@ -28,4 +28,4 @@ Thanks to Stephen Hutchings for the user icon https://www.iconfinder.com/icons/2
 
 #### Tags
 
-pub crawl, points tracker, circle line
+pub crawl, points tracker, circle line, glasgow sub
