@@ -31,6 +31,8 @@
         <td>
           <img :src="newUser.imageURL" class="small-avatar" />
           <input type="text" v-model="newUser.imageURL">
+          <input type="file" @change="onFileChanged">
+          <button @click="uploadImage">Upload</button>
         </td>
         <td><input type="text" v-model="newUser.name"></td>
         <td />

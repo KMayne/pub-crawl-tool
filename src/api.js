@@ -1,5 +1,12 @@
 const router = require('express').Router();
 const utils = require('./utils');
+const multer = require('multer');
+const path = require('path');
+
+const profileUpload = multer({
+    dest: path.resolve(__dirname, 'uploads/'),
+    limits: {filesize: 1000000, files: 1}
+});
 
 router.use((req, res, next) => {
   const key = req.query.key;
@@ -51,6 +58,18 @@ router.post('/users/', (req, res, next) => {
         key
       })).save();
     })
+    .then(data => res.json(data))
+    .catch(err => next(err));
+});
+
+router.post('/users/:userID/uploadImage', (req, res, next) => {
+    const images = req.files.map((file) => {
+        return {
+            fileName: file.filename,
+            originalName: file.originalname
+        }
+    })
+    req.db.ImageModel.insertMany(images)
     .then(data => res.json(data))
     .catch(err => next(err));
 });

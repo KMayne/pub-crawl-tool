@@ -34,9 +34,15 @@ const UserSchema = new Schema({
   key: String
 });
 
+const ImageSchema = new Schema({
+  fileName: String,
+  originalName: String
+}, {timestamps: true});
+
 module.exports.UserOffenceModel = mongoose.model('UserOffence', UserOffenceSchema)
 module.exports.OffenceModel = mongoose.model('Offence', OffenceSchema)
 module.exports.UserModel = mongoose.model('User', UserSchema)
+module.exports.UserImageModel = mongoose.model('Image', ImageSchema)
 
 mongoose.connection.on('error', function () {
   utils.log('Could not connect to the database. Exiting now...');
