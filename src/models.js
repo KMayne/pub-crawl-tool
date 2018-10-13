@@ -47,4 +47,4 @@ mongoose.connection.once('open', function () {
   utils.log("Successfully connected to the database");
 });
 
-mongoose.connect('mongodb://localhost/pubcrawl');
+mongoose.connect('mongodb://localhost/glasgow-pubcrawl');
