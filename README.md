@@ -11,7 +11,8 @@ Simply install the dependencies and run the start script:
 ```
 npm install
 npm start
-``
+```
+
 You'll also need to set up a mongodb instance.
 
 To use the site, follow the link that is printed when you start the server then
