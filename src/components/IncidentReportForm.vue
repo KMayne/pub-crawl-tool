@@ -22,7 +22,7 @@
           </a>
         </div>
       </section>
-      <button id="#submit-btn" @click="submitForm" class="submit-button">
+      <button id="submit-btn" @click="submitForm" class="submit-button">
         <i class="material-icons">done</i>
         <span>Submit Report</span>
       </button>
