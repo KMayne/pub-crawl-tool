@@ -188,7 +188,7 @@ export default {
         walking: false,
         geolocation: new Coords()
       }, {
-        name: 'Weatherspoons Victoria Station',
+        name: 'Wetherspoons Victoria Station',
         stationName: 'Victoria',
         notes: 'Breakfast',
         time: new Time(9, 15),
@@ -213,7 +213,7 @@ export default {
         walking: false,
         geolocation: new Coords()
       }, {
-        name: 'The George',
+        name: 'Ye Olde Cock Tavern',
         stationName: 'Temple',
         time: new Time(11, 30),
         walking: false,
@@ -268,26 +268,25 @@ export default {
         walking: false,
         geolocation: new Coords()
       }, {
-        name: 'Fox & Anchor',
+        name: 'The Sutton Arms',
         stationName: 'Barbican',
         time: new Time(16, 30),
         walking: true,
         geolocation: new Coords()
       },{
-        name: 'TBD',
+        name: 'The Castle',
         stationName: 'Farringdon',
-        notes: 'Pub undecided',
         time: new Time(17),
         walking: false,
         geolocation: new Coords()
       }, {
-        name: 'O\'Neils',
-        stationName: 'Kings Cross St Pancras',
+        name: 'O\'Neill\'s',
+        stationName: 'King\'s Cross St Pancras',
         time: new Time(17, 30),
         walking: false,
         geolocation: new Coords()
       }, {
-        name: 'Crown and Anchor',
+        name: 'The Jeremy Bentham',
         stationName: 'Euston Square',
         time: new Time(18),
         walking: false,
@@ -307,7 +306,7 @@ export default {
         geolocation: new Coords()
       }, {
         name: 'The Green Man',
-        stationName: 'Edgeware Road',
+        stationName: 'Edgware Road',
         time: new Time(20),
         walking: false,
         geolocation: new Coords()
