@@ -8,6 +8,14 @@ Vue.directive('clipboard', {
   }
 });
 
+import * as VueGoogleMaps from 'vue2-google-maps'
+
+Vue.use(VueGoogleMaps, {
+  load: {
+    key: '[API-key]'
+  }
+});
+
 import App from './components/App.vue'
 
 new Vue({ el: '#app', render: h => h(App) })
