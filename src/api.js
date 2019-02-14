@@ -104,7 +104,7 @@ router.post('/users/:userID/offences', (req, res, next) => {
         id: randomID(),
         description: offence.description,
         points: offence.points,
-        submitted: req.user.name
+        submitter: req.user.name
       });
       user.points += offence.points;
 
