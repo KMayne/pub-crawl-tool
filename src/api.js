@@ -69,6 +69,17 @@ router.patch('/users/:userID', (req, res, next) => {
 router.post('/users/:userID/checkIn', (req, res, next) => {
   req.db.UserModel.findOne({ id: req.params.userID })
     .then(user => {
+      const hours = Math.max(0, (new Date()).getHours() - 9);
+      if (user.checkIns.length === 0 && hours > 0) {
+        let latePenalty = -10 * hours;
+        user.offences.push({
+          id: randomID(),
+          description: 'Automatic Lateness Penalty',
+          points: latePenalty,
+          submitter: 'CLPC Lateness Bot'
+        });
+        user.points += latePenalty;
+      }
       if (!user.checkIns.some(ci => ci.pubName === req.body.pubName)) {
         user.checkIns.push({ pubName: req.body.pubName });
       }
