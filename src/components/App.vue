@@ -182,7 +182,7 @@ export default {
       offences: [],
       reportSuccess: false,
       route: [{
-        name: 'Strawpedo a VK outside the station',
+        name: 'Station VK',
         stationName: 'Sloane Square',
         time: new Time(9),
         walking: false,
@@ -384,10 +384,6 @@ nav {
   justify-items: stretch;
 }
 
-header > a, nav > a {
-  color: black;
-}
-
 nav > a {
   display: flex;
   justify-content: center;
@@ -396,14 +392,15 @@ nav > a {
   text-align: center;
   font-size: 24px;
   padding: 8px;
-  background-color: #FAC05E;
+  background-color: #ffce00;
+  border-bottom: 3px solid #cca400;
 }
 
 nav > a:nth-child(n+1) {
-  border-left: 1px solid #E4AF56;
+  border-left: 1px solid #efc000;
 }
 
 nav > a:hover {
-  background-color: #E4AF56;
+  background-color: #cca400;
 }
 </style>
