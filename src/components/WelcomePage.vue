@@ -1,7 +1,7 @@
 <template>
   <article>
   	<h1>Welcome</h1>
-      <p>Welcome to the official Glasgow Sub Crawl app. This app will serve as your guide for the crawl and is where you'll be recording penalty points.</p>
+      <p>Welcome to the official Circle Line Pub Crawl app. This app will serve as your guide for the crawl and is where you'll be recording penalty points.</p>
       <form v-if="currentUser.checkIns.length === 0" >
         <label>Please select the pub you're starting from: 
           <select v-model="selectedPub">
