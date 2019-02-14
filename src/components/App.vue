@@ -63,7 +63,6 @@ export default {
       .then(() => {
         if (!this.currentUser) throw new Error("User not found");
         console.log('Current User =', this.currentUser);
-        if(this.currentUser.checkIns.length === 0 && this.page !== 'welcome') window.location.href = "/welcome";
       });
   },
 
