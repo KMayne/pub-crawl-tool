@@ -14,6 +14,40 @@
   <section v-else class="next-pub">
     <h1>Congratulations - you have completed the pub crawl! 🍻</h1>
   </section>
+  <GmapMap
+    :center="{lat: 51.5109007, lng: -0.1374553}"
+    :zoom="12"
+    map-type-id="roadmap"
+    style="width: 100%; height: 300px; margin: 8px 0;"
+    :options="{
+      zoomControl: false,
+      clickableIcons: false,
+      mapTypeControl: false,
+      scaleControl: false,
+      streetViewControl: false,
+      rotateControl: false,
+      fullscreenControl: true,
+      disableDefaultUi: false,
+      styles: [{
+        featureType: 'poi',
+        stylers: [{visibility: 'off'}]
+      }]
+    }">
+    <gmap-info-window :options="mapInfo.options"
+                      :position="mapInfo.currPub.geolocation"
+                      :opened="mapInfo.isOpen"
+                      @closeclick="mapInfo.isOpen=false">
+      <h3>{{mapInfo.currPub.name}} ({{mapInfo.currPub.stationName}})</h3>
+      <h4>{{mapInfo.currPub.time && mapInfo.currPub.time.format()}}</h4>
+    </gmap-info-window>
+    <GmapMarker
+      v-for="pub in route"
+      :key="pub.name"
+      :position="pub.geolocation"
+      :clickable="true"
+      @click="toggleInfoWindow(pub)">
+    </GmapMarker>
+  </GmapMap>
   <div class="scroll-container">
   <table>
     <thead>
@@ -45,6 +79,18 @@
 export default {
   name: 'route-page',
   props: ['route', 'users', 'currentUser'],
+  data: () => ({
+    mapInfo: {
+      isOpen: false,
+      options: {
+        pixelOffset: {
+          width: 0,
+          height: -35
+        }
+      },
+      currPub: {}
+    }
+  }),
   computed: {
     checkIns: function () {
       return this.currentUser ? this.currentUser.checkIns : [];
@@ -63,7 +109,7 @@ export default {
         user.checkIns.forEach(ci => {
           if (!pubs[ci.pubName]) pubs[ci.pubName] = [];
           pubs[ci.pubName].push(user);
-        })
+        });
         return pubs;
       }, {});
     }
@@ -79,6 +125,10 @@ export default {
     },
     formatTime(dateStr) {
       return dateStr ? new Date(dateStr).toTimeString().substring(0, 5) : '';
+    },
+    toggleInfoWindow: function(pub) {
+      this.mapInfo.isOpen = this.mapInfo.currPub !== pub || !this.mapInfo.isOpen;
+      this.mapInfo.currPub = pub;
     }
   }
 };

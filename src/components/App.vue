@@ -369,7 +369,10 @@ class Time {
 }
 
 class Coords {
-  constructor() {}
+  constructor(latitude, longitude) {
+    this.lat = latitude;
+    this.lng = longitude;
+  }
 }
 
 function pad(num) {
