@@ -18,7 +18,7 @@
     :center="{lat: 51.5109007, lng: -0.1374553}"
     :zoom="12"
     map-type-id="roadmap"
-    style="width: 100%; height: 300px; margin: 8px 0;"
+    style="width: 100%; height: 300px; margin: 8px 0"
     :options="{
       zoomControl: false,
       clickableIcons: false,
@@ -67,7 +67,7 @@
       <template v-for="pub in route">
         <tr>
           <td>{{pub.name}}<br />
-          <span class="station-name"><img src="images/roundel.svg" />{{pub.stationName}}</span><br />
+          <span class="station-name"><img src="images/roundel.svg" />{{pub.stationName}}</span>
           <span class="info">{{pub.notes}}{{pub.walking ? (pub.notes ? ' &bull; ' : '') + 'Walking' : ''}}</span></td>
           <td><span :class="{'strike': checkIns.find(ci => ci.pubName === pub.name)}">{{pub.time.format()}}</span><br />
           <a @click="removeCheckIn(pub.name)">{{formatTime((checkIns.find(ci => ci.pubName === pub.name)||{}).timestamp)}}</a></td>
@@ -183,15 +183,23 @@ export default {
   height: 16px;
 }
 
+td .station-name img {
+  height: 10px;
+}
+
 .strike {
   text-decoration: line-through;
+}
+
+.info {
+  margin-left: 10px;
 }
 
 .strike, .info {
   color: #8d8f93;
 }
 
-.info {
+.info, td .station-name {
   font-size: 12px;
 }
 
@@ -199,8 +207,24 @@ export default {
   display: none;
 }
 
-tr > * {
-  line-height: normal;
+tr td:first-of-type, tr th:first-of-type {
+  text-align: left;
+}
+
+td, th {
+  padding: 8px;
+}
+
+.small-avatar {
+  margin-right: 5px;
+}
+
+tbody > tr:nth-child(4n-1), tbody > tr:nth-child(4n) {
+  background-color: #eee;
+}
+
+tbody > tr:nth-child(4n+1), tbody > tr:nth-child(4n+2) {
+  background-color: #f6f6f6;
 }
 </style>
 
