@@ -47,6 +47,13 @@
       :clickable="true"
       @click="toggleInfoWindow(pub)">
     </GmapMarker>
+    <GmapMarker
+      v-for="ci in currentCheckIns"
+      :key="ci.userId"
+      :position="ci.position"
+      :clickable="false"
+      :icon="ci.icon">
+    </GmapMarker>
   </GmapMap>
   <div class="scroll-container">
   <table>
@@ -112,6 +119,20 @@ export default {
         });
         return pubs;
       }, {});
+    },
+    currentCheckIns: function () {
+      if (!this.route || !this.users) return {};
+      return this.users.filter(u => u.checkIns.length !== 0).map(user => {
+        const mostRecentPub = this.route.find(pub => pub.name === user.checkIns[user.checkIns.length - 1].pubName);
+        return ({
+          userId: user.id,
+          position: mostRecentPub.geolocation.perturb(),
+          icon: {
+            scaledSize: { width: 20, height: 20 },
+            url: user.imageURL
+          }
+        });
+      });
     }
   },
   methods: {

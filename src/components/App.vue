@@ -373,6 +373,12 @@ class Coords {
     this.lat = latitude;
     this.lng = longitude;
   }
+
+  // Returns a new coordinate near the coordinate
+  perturb() {
+    const PERTURBATION_SIZE = 0.0003;
+    return new Coords(this.lat + Math.random() * PERTURBATION_SIZE, this.lng + Math.random() * PERTURBATION_SIZE);
+  }
 }
 
 function pad(num) {
