@@ -1,14 +1,21 @@
+@font-face {
+  font-family: "Johnston100-Regular";
+  src: url("https://tfl.gov.uk/cdn/static/assets/fonts/Johnston100-Regular.woff2") format("woff2");
+}
+
 body {
   background: #FAFAFA;
 }
 
+*,
 html,
 button,
 input,
 optgroup,
 select,
 textarea {
-  font-family: "Calibri", Candara, "Bitstream Vera Sans", "DejaVu Sans", "Bitstream Vera Sans", "Trebuchet MS", Verdana, "Verdana Ref", sans-serif;
+  color: #2d3039;
+  font-family: Johnston100-Regular,Arial,Helvetica,sans-serif;
 }
 
 article {
@@ -16,31 +23,33 @@ article {
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: 'Raleway';
+  font-family: Johnston100-Regular,Arial,Helvetica,sans-serif;
   margin-top: 5px;
 }
 
 header {
-  font-family: 'Raleway';
   font-size: 32px;
-  font-weight: bold;
   text-align: center;
 
   box-sizing: border-box;
   padding: 8px;
 
-  background: #EE6352;
+  background: #113b92;
+  border-bottom: 3px solid #0a2969;
   width: 100%;
+}
+
+header > a {
+  color: #fff;
 }
 
 a {
   text-decoration: none;
-  color: black;
+  color: #2d3039;
 }
 
 button, a.button {
   padding: 5px 10px;
-  border-radius: 2px;
   border: none;
   vertical-align: middle;
   font-size: 24px;
@@ -113,10 +122,13 @@ h2 {
 
 .submit-button {
   margin-top: 10px;
-  background: #59CD90;
+  background: #007229;
+  border-bottom: 3px solid #00501d;
+  font-size: 20px;
 }
 
-.submit-button > i {
+.submit-button > * {
+  color: #fff;
   vertical-align: middle;
   padding-right: 5px;
 }
@@ -148,7 +160,11 @@ table {
 }
 
 table > tr:nth-child(2n+2) {
-  background-color: #CCC;
+  background-color: #eee;
+}
+
+table > tr:nth-child(2n) {
+  background-color: #f6f6f6;
 }
 
 .current-user-row {

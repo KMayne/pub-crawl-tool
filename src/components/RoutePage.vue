@@ -2,23 +2,23 @@
 <article>
   <!-- Next pub -->
   <section v-if="nextPub" class="next-pub">
-    <h1>Next pub: {{nextPub.name}} ({{nextPub.stationName}})</h1>
+    <h1>Next: {{nextPub.name}}</h1>
+    <h2 class="station-name"><img src="images/roundel.svg" />{{nextPub.stationName}}</h2>
     <h2>Scheduled Arrival: <span :class="{ 'behind-schedule': nextPub.time.passed() }">{{nextPub.time.format()}}</span></h2>
-    <h3>Mode of transport: {{nextPub.walking ? 'Walking' : 'Tube'}}</h3>
+    <h3 v-if="nextPub.walking">Walking</h3>
     <button id="#checkin-btn" @click="checkIn(nextPub.name)" class="submit-button">
       <span>Check In</span>
       <i class="material-icons">done</i>
     </button>
   </section>
-  <section v-else>
+  <section v-else class="next-pub">
     <h1>Congratulations - you have completed the pub crawl! 🍻</h1>
   </section>
-  <hr>
   <GmapMap
     :center="{lat: 51.5109007, lng: -0.1374553}"
     :zoom="12"
     map-type-id="roadmap"
-    style="width: 100%; height: 300px"
+    style="width: 100%; height: 300px; margin: 8px 0"
     :options="{
       zoomControl: false,
       clickableIcons: false,
@@ -55,25 +55,28 @@
       :icon="ci.icon">
     </GmapMarker>
   </GmapMap>
-  <h2>Schedule</h2>
   <div class="scroll-container">
   <table>
-    <tr>
-      <th>Station</th>
-      <th>Pub</th>
-      <th>Scheduled Time</th>
-      <th>Notes</th>
-      <th>Check-in Time</th>
-      <th>Checked In</th>
-    </tr>
-    <tr v-for="pub in route" :key="pub.name">
-      <td>{{pub.stationName}}</td>
-      <td>{{pub.name}}</td>
-      <td>{{pub.time.format()}}</td>
-      <td>{{pub.notes}}{{pub.walking ? (pub.notes ? ', w' : 'W') + 'alking to next pub' : ''}}</td>
-      <td><a @click="removeCheckIn(pub.name)">{{formatTime((checkIns.find(ci => ci.pubName === pub.name)||{}).timestamp)}}</a></td>
-      <td><a v-for="user in pubVisitors[pub.name]" :href="'/users/' + user.id"><img :src="user.imageURL" class="small-avatar" /></a></td>
-    </tr>
+    <thead>
+      <tr>
+        <th>Pub</th>
+        <th>Time</th>
+      </tr>
+    </thead>
+    <tbody>
+      <template v-for="pub in route">
+        <tr>
+          <td>{{pub.name}}<br />
+          <span class="station-name"><img src="images/roundel.svg" />{{pub.stationName}}</span>
+          <span class="info">{{pub.notes}}{{pub.walking ? (pub.notes ? ' &bull; ' : '') + 'Walking' : ''}}</span></td>
+          <td><span :class="{'strike': checkIns.find(ci => ci.pubName === pub.name)}">{{pub.time.format()}}</span><br />
+          <a @click="removeCheckIn(pub.name)">{{formatTime((checkIns.find(ci => ci.pubName === pub.name)||{}).timestamp)}}</a></td>
+        </tr>
+        <tr :class="{'hidden': !pubVisitors[pub.name]}">
+          <td colspan="2"><a v-for="user in pubVisitors[pub.name]" :href="'/users/' + user.id"><img :src="user.imageURL" class="small-avatar" /></a></td>
+        </tr>
+      </template>
+    </tbody>
   </table>
   </div>
 </article>
@@ -154,6 +157,9 @@ export default {
 
 <style>
 .next-pub {
+  padding: 20px;
+  background-color: #eee;
+  border-bottom: 3px solid #ccc;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -169,7 +175,56 @@ export default {
 }
 
 .behind-schedule {
-  color: red;
+  color: #cc3706;
+}
+
+.station-name img {
+  margin-right: 5px;
+  height: 16px;
+}
+
+td .station-name img {
+  height: 10px;
+}
+
+.strike {
+  text-decoration: line-through;
+}
+
+.info {
+  margin-left: 10px;
+}
+
+.strike, .info {
+  color: #8d8f93;
+}
+
+.info, td .station-name {
+  font-size: 12px;
+}
+
+.hidden {
+  display: none;
+}
+
+tr td:first-of-type, tr th:first-of-type {
+  text-align: left;
+}
+
+td, th {
+  padding: 8px;
+}
+
+.small-avatar {
+  margin-right: 5px;
+}
+
+tbody > tr:nth-child(4n-1), tbody > tr:nth-child(4n) {
+  background-color: #eee;
+}
+
+tbody > tr:nth-child(4n+1), tbody > tr:nth-child(4n+2) {
+  background-color: #f6f6f6;
 }
 </style>
 
