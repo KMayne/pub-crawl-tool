@@ -3,7 +3,7 @@
 
 This web app allows for tracking you and your fellow crawlers through the circle line pub crawl.
 For a bit of fun, we also had point penalties for things (e.g. losing something) on
-our pub crawl. This tool was created by me in about 14 hours to track those points (and an additional 6 hours for adding the tracking feature & deploying v2).
+our pub crawl. This tool was created by me in about 14 hours to track those points (and an additional 6 hours for adding the tracking feature & deploying v2). I.e. it is a bit janky in places
 
 ## Running
 
