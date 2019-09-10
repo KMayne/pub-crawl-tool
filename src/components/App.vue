@@ -77,7 +77,7 @@ export default {
         imageURL: '/images/user.png',
         points: 0
       };
-      return this.users.find(u => u.id == this.userID) || NOT_FOUND_USER;
+      return this.users.find(u => u.id === this.userID) || NOT_FOUND_USER;
     },
 
     currentUser() {
@@ -112,9 +112,9 @@ export default {
     addUserOffence({ userID, offenceID }) {
       this.sendData(`/users/${userID}/offences/`, { offenceID })
         .then(() => {
-          const points = this.users.find(u => u.id == userID).points + 0;
+          const points = this.users.find(u => u.id === userID).points + 0;
           this.refreshData().then(() => {
-            this.reportSuccess = points !== this.users.find(u => u.id == userID).points
+            this.reportSuccess = points !== this.users.find(u => u.id === userID).points
           });
         });
     },
@@ -149,8 +149,8 @@ export default {
         method,
         body: data !== null ? JSON.stringify(data) : null,
         headers: {
-          'Accept': 'application/json', // receive json
-          'Content-Type': 'application/json' // send json
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
         }
       }).catch(err => alert('Error occured: ' + err));
     },
@@ -396,7 +396,7 @@ nav {
 nav > a {
   display: flex;
   justify-content: center;
-  align-items: center;  
+  align-items: center;
   flex: 1 1;
   text-align: center;
   font-size: 24px;

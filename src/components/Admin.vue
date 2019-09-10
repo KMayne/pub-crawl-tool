@@ -11,7 +11,7 @@
       </tr>
       <tr v-for="user in users" :key="user.id">
         <td>
-          <img :src="user.imageURL" class="small-avatar" />
+          <img :src="user.imageURL" :alt="`${user.name}'s profile picture`" class="small-avatar" />
           <input type="text" v-model="user.imageURL">
         </td>
         <td><input type="text" v-model="user.name"></td>
@@ -29,11 +29,11 @@
       </tr>
       <tr>
         <td>
-          <img :src="newUser.imageURL" class="small-avatar" />
+          <img :src="newUser.imageURL" alt="New user icon" class="small-avatar" />
           <input type="text" v-model="newUser.imageURL">
         </td>
         <td><input type="text" v-model="newUser.name"></td>
-        <td />
+        <td></td>
         <td>
          <button class="material-button" @click="addUser">
             <i class="material-icons">save</i>
@@ -93,7 +93,7 @@ export default {
     },
 
     saveUser(userID) {
-      this.$emit('modify-user', {userID, user: this.users.find(u => u.id == userID)});
+      this.$emit('modify-user', {userID, user: this.users.find(u => u.id === userID)});
     },
 
     addOffence() {
@@ -101,7 +101,7 @@ export default {
     },
 
     saveOffence(offenceID) {
-      this.$emit('modify-offence', { offenceID, offence: this.offences.find(o => o.id == offenceID)});
+      this.$emit('modify-offence', { offenceID, offence: this.offences.find(o => o.id === offenceID)});
     },
 
     generateLink(key) {
