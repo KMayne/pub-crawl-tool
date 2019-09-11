@@ -20,7 +20,8 @@ app.use(bodyParser.json());
 app.use(favicon(path.join(__dirname, '..', 'static', 'images', 'favicon', 'favicon.ico')));
 
 // Set up static paths - ideally a reverse proxy would handle this & favicon
-app.use('/styles', express.static(path.join(__dirname, '..', 'static', 'styles')));
+app.use('/styles/', express.static(path.join(__dirname, '..', 'static', 'styles')));
+app.use('/fonts/', express.static(path.join(__dirname, '..', 'static', 'fonts')));
 app.use('/images/', express.static(path.join(__dirname, '..', 'static', 'images')));
 app.use(express.static(path.join(__dirname, '..', 'uploads')));
 

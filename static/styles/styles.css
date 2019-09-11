@@ -1,8 +1,3 @@
-@font-face {
-  font-family: "Johnston100-Regular";
-  src: url("https://tfl.gov.uk/cdn/static/assets/fonts/Johnston100-Regular.woff2") format("woff2");
-}
-
 body {
   background: #FAFAFA;
 }
@@ -15,7 +10,7 @@ optgroup,
 select,
 textarea {
   color: #2d3039;
-  font-family: Johnston100-Regular,Arial,Helvetica,sans-serif;
+  font-family: Raleway,Arial,Helvetica,sans-serif;
 }
 
 article {
@@ -23,7 +18,7 @@ article {
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: Johnston100-Regular,Arial,Helvetica,sans-serif;
+  font-family: Raleway,Arial,Helvetica,sans-serif;
   margin-top: 5px;
 }
 
