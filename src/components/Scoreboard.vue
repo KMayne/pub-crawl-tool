@@ -23,7 +23,8 @@ export default {
   computed: {
     processedUsers() {
       if (!this.users || !this.users.map) return [];
-      return this.users.map(obj => ({
+      return this.users.filter(u => u.checkIns.length !== 0)
+      .map(obj => ({
         id: obj.id,
         name: obj.name,
         imageURL: obj.imageURL,
