@@ -26,7 +26,7 @@ app.use(express.static(path.join(__dirname, '..', 'uploads')));
 
 // Webpack middleware for use in development
 if (ENV_DEVELOPMENT || ENV_TESTING) {
-  utils.log('Setting up webpack-dev-middleware')
+  utils.log('Setting up webpack-dev-middleware');
   const webpack = require('webpack');
   const config = require('../webpack.config.js');
   const compiler = webpack(config);

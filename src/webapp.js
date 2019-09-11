@@ -19,4 +19,4 @@ Vue.use(VueGoogleMaps, {
 
 import App from './components/App.vue'
 
-new Vue({ el: '#app', render: h => h(App) })
+new Vue({ el: '#app', render: h => h(App) });

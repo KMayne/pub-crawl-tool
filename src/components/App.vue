@@ -54,6 +54,7 @@ export default {
   },
 
   created() {
+    if (window.location.href.includes('http://localhost')) document.title += ' (DEV)';
     const query = location.search.substring(1);
     if (query.substr(0, 4) === 'key=') {
       this.setKey(query.substring(4));
