@@ -5,7 +5,7 @@
   "version": "1.1.0",
   "license": "MIT",
   "scripts": {
-    "start-prod": "npm run build && forever -c 'npm start' ./",
+    "start-prod": "NODE_ENV=production npm run build && npm start",
     "start": "node src/app.js",
     "build": "webpack --mode=production --progress --hide-modules"
   },
