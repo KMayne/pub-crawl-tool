@@ -68,10 +68,9 @@ if (!ENV_TESTING) {
 }
 
 // Save & output bootstrap key for bootstrapping the data
-const SERVER_URL = '';
 utils.randomString()
   .then(key => {
     app.set('bootstrapKey', key);
-    utils.log('Use the following link to add users: ' + SERVER_URL + '/admin?key=' + key);
+    utils.log('Use the following link to add users: ' + require('./config').serverURL + '/admin?key=' + key);
   })
   .catch(err => utils.error('Error generating random string: ' + err));

@@ -37,7 +37,7 @@ module.exports.UserOffenceModel = mongoose.model('UserOffence', UserOffenceSchem
 module.exports.OffenceModel = mongoose.model('Offence', OffenceSchema);
 module.exports.UserModel = mongoose.model('User', UserSchema);
 
-mongoose.connect('mongodb://localhost/pubcrawl', { useNewUrlParser: true })
+mongoose.connect(require('./config').mongoURL, { useNewUrlParser: true })
   .then(() => utils.log("Successfully connected to the database"))
   .catch(() => {
     utils.log('Could not connect to the database. Exiting now...');

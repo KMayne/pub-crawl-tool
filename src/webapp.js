@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Clipboard from 'clipboard'
 import 'normalize.css'
+import * as config from './config'
 
 Vue.directive('clipboard', {
   bind(el, binding, vnode, oldVnode) {
@@ -12,7 +13,7 @@ import * as VueGoogleMaps from 'vue2-google-maps'
 
 Vue.use(VueGoogleMaps, {
   load: {
-    key: '[API-key]'
+    key: config.googleMapsAPIKey
   }
 });
 
