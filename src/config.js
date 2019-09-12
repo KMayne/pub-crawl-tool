@@ -63,20 +63,20 @@ module.exports = {
         name: 'St Stephen\'s Tavern',
         stationName: 'Westminster',
         time: new Time(10, 30),
-        walking: true,
+        walking: false,
         geolocation: new Coords(51.501178, -0.125605)
       }, {
-        name: 'Lord Moon of the Mall',
+        name: 'The Sherlock Holmes',
         stationName: 'Embankment',
         time: new Time(11),
-        walking: false,
-        geolocation: new Coords(51.506494, -0.127379)
+        walking: true,
+        geolocation: new Coords(51.507334, -0.125259)
       }, {
-        name: 'Ye Olde Cock Tavern',
+        name: 'The George',
         stationName: 'Temple',
         time: new Time(11, 30),
         walking: false,
-        geolocation: new Coords(51.513760, -0.110495)
+        geolocation: new Coords(51.513328, -0.113069)
       },{
         name: 'The Blackfriar',
         stationName: 'Blackfriars',
@@ -87,7 +87,7 @@ module.exports = {
         name: 'The Sugar Loaf',
         stationName: 'Mansion House',
         time: new Time(12, 30),
-        walking: true,
+        walking: false,
         geolocation: new Coords(51.512308, -0.092843)
       }, {
         name: 'Sir John Hawkshaw',
@@ -100,7 +100,7 @@ module.exports = {
         name: 'The Monument',
         stationName: 'Monument',
         time: new Time(14),
-        walking: false,
+        walking: true,
         geolocation: new Coords(51.510086, -0.086215)
       }, {
         name: 'The Liberty Bounds',
@@ -109,7 +109,7 @@ module.exports = {
         walking: false,
         geolocation: new Coords(51.509740, -0.078591)
       }, {
-        name: 'Hoop and Grapes',
+        name: 'The Hoop and Grapes',
         stationName: 'Aldgate',
         time: new Time(15),
         walking: false,
@@ -118,25 +118,25 @@ module.exports = {
         name: 'Hamilton Hall',
         stationName: 'Liverpool Street',
         time: new Time(15, 30),
-        walking: true,
+        walking: false,
         geolocation: new Coords(51.517481, -0.080949)
       }, {
         name: 'The Globe',
         stationName: 'Moorgate',
         time: new Time(16),
-        walking: false,
+        walking: true,
         geolocation: new Coords(51.517694, -0.088744)
       }, {
         name: 'The Sutton Arms',
         stationName: 'Barbican',
         time: new Time(16, 30),
-        walking: true,
+        walking: false,
         geolocation: new Coords(51.520705, -0.098194)
       },{
         name: 'The Castle',
         stationName: 'Farringdon',
         time: new Time(17),
-        walking: false,
+        walking: true,
         geolocation: new Coords(51.520281, -0.104275)
       }, {
         name: 'O\'Neill\'s',
@@ -145,17 +145,17 @@ module.exports = {
         walking: false,
         geolocation: new Coords(51.528939, -0.126169)
       }, {
-        name: 'The Jeremy Bentham',
+        name: 'Prince of Wales Feathers',
         stationName: 'Euston Square',
         time: new Time(18),
         walking: false,
-        geolocation: new Coords(51.523502, -0.135567)
+        geolocation: new Coords(51.524234, -0.138539)
       },{
-        name: 'The Albany',
+        name: 'Greene Man',
         stationName: 'Great Portland Street',
         time: new Time(18, 30),
         walking: false,
-        geolocation: new Coords(51.523386, -0.143974)
+        geolocation: new Coords(51.523707, -0.143230)
       }, {
         name: 'Metropolitan Bar',
         stationName: 'Baker Street',
@@ -164,16 +164,16 @@ module.exports = {
         walking: false,
         geolocation: new Coords(51.522521, -0.156842)
       }, {
-        name: 'The Green Man',
+        name: 'BrewDog (Paddington)',
         stationName: 'Edgware Road',
         time: new Time(20),
         walking: false,
-        geolocation: new Coords(51.520365, -0.170386)
+        geolocation: new Coords(51.51890, -0.170554)
       },{
         name: 'Pride of Paddington',
         stationName: 'Paddington',
         time: new Time(20, 30),
-        walking: false,
+        walking: true,
         geolocation: new Coords(51.515016, -0.176348)
       }, {
         name: 'Bayswater Arms',
