@@ -188,40 +188,6 @@ export default {
   }
 }
 
-class Time {
-  constructor(hour, minute = 0) {
-    if (!(hour >= 0 && hour < 24 && minute >= 0 && minute < 60)) throw new Error("Invalid time");
-    this.hour = hour;
-    this.minute = minute;
-  }
-
-  format() {
-    return pad(this.hour) + ':' + pad(this.minute);
-  }
-
-  passed() {
-    const now = new Date();
-    return now.getHours() > this.hour || now.getHours() === this.hour && now.getMinutes() > this.minute;
-  }
-}
-
-class Coords {
-  constructor(latitude, longitude) {
-    this.lat = latitude;
-    this.lng = longitude;
-  }
-
-  // Returns a new coordinate near the coordinate
-  perturb() {
-    const PERTURBATION_SIZE = 0.0003;
-    return new Coords(this.lat + Math.random() * PERTURBATION_SIZE, this.lng + Math.random() * PERTURBATION_SIZE);
-  }
-}
-
-function pad(num) {
-  if (num < 10) return '0' + num;
-  return String(num);
-}
 </script>
 
 <style>
