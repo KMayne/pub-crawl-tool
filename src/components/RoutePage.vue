@@ -5,7 +5,7 @@
     <h1>Next: {{nextPub.name}}</h1>
     <h2 class="station-name"><img src="images/roundel.svg" />{{nextPub.stationName}}</h2>
     <h2>Scheduled Arrival: <span :class="{ 'behind-schedule': nextPub.time.passed() }">{{nextPub.time.format()}}</span></h2>
-    <h3 v-if="nextPub.walking">Walking</h3>
+    <h3 v-if="nextPub.walking">Walking to this pub</h3>
     <button id="#checkin-btn" @click="checkIn(nextPub.name)" class="submit-button">
       <span>Check In</span>
       <i class="material-icons">done</i>
