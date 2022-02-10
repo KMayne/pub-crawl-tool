@@ -22,7 +22,7 @@
     "file-loader": "^1.1.11",
     "mongoose": "^5.7.5",
     "morgan": "^1.9.1",
-    "node-sass": "^4.13.1",
+    "node-sass": "^7.0.0",
     "normalize.css": "^7.0.0",
     "path": "^0.12.7",
     "sass-loader": "^6.0.7",
