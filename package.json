@@ -41,7 +41,7 @@
   ],
   "devDependencies": {
     "concurrently": "^3.6.1",
-    "localtunnel": "^1.9.2",
+    "localtunnel": "^2.0.2",
     "webpack-cli": "^3.3.8",
     "webpack-dev-middleware": "^3.7.1"
   },
